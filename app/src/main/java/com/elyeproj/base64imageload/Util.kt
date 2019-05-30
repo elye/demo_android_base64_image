@@ -13,11 +13,10 @@ fun Context.readRawTextFile(id: Int): String {
     val inputStream = resources.openRawResource(id)
     val reader = BufferedReader(InputStreamReader(inputStream))
     try {
-        var line = reader.readLine()
-        while (line != null) {
+        while (true) {
+            val line = reader.readLine() ?: break
             stringBuffer.append(line)
             stringBuffer.append('\n')
-            line = reader.readLine()
         }
     } catch (e: Exception) {
         e.printStackTrace()
